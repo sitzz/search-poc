@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: search-app
+    env_file: .env
+    depends_on:
+      - redis-stack
+    networks:
+      - main
+    ports:
+      - 8800:8000
+
+  redis-stack:
+    image: redis/redis-stack:latest
+    container_name: search-redis-stack
+    networks:
+      - main
+
+networks:
+  main:
