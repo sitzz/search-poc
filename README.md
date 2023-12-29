@@ -19,7 +19,7 @@ down`) hence can be left out.
 
 ## API
 
-When installed, the simple search API is available at `POST http://localhost/search`.
+When installed, the simple search API is available at `POST http://localhost:8800/search`.
 
 In order to perform a search include the query parameter `query`, example:
 
@@ -27,8 +27,9 @@ In order to perform a search include the query parameter `query`, example:
 curl --location --request POST 'http://localhost:8800/search?query=the%20matrix'
 ```
 
-Why POST when using query parameters? No particular reason. I guess I was thinking of using json payloads originally...
-It's a POC, you'll live ;-)
+* Why POST when using query parameters? _No particular reason. I guess I was thinking of using json payloads
+originally... It's a POC, you'll live ;-)_
+* Why port `8800`? _Because port 8000 was already used in my environment._
 
 The resulting response could be something like this
 <details>
@@ -342,10 +343,11 @@ By default `ingest.py` will ingest the TMDb records and create Redis indexes. Th
 overwrite any keys that already exist. Error handling ensures that attempts to create indexes that already exist will be
 handled somewhat gracefully.
 
-# Please note
+# TMDB
 
-The import files included are exported from TMDb and are subject to their terms of use:
-https://www.themoviedb.org/terms-of-use
+This application uses TMDB data but is not endorsed, certified, or otherwise approved by TMDB.
+
+![The Movie DB](assets/tmdb_alt_long.svg)
 
 The exports are in English only, so this POC generally only supports English searches for international titles. Local
 titles should be available in the local language though, eg. searching for "adams æbler" or "Das Leben der Anderen" will
